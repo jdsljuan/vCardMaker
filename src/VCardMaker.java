@@ -41,7 +41,7 @@ public class VCardMaker{
      * Data orden Nombre, Primer Apellido, Segundo Apellido, Telefono, Genero, Grupo, Edad
     */
     public static String makeContact(String line){
-        String[] dataSplit = line.replace("\"", "").split(",");
+        String[] dataSplit = line.replaceAll("[^\\x00-\\x7F]", "").split(",");
         String[] vCard = {"BEGIN:VCARD\n","VERSION:4.0\n","FN:","TEL;TYPE=home:tel:","GENDER:", "ORG:","END:VCARD\n"};
         vCard[2] += dataSplit[0]+" "+dataSplit[1]+" "+dataSplit[2]+"\n";//Nombres
         vCard[3] += dataSplit[3]+"\n";//Telefono
